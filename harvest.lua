@@ -23,28 +23,43 @@ end
 function goToStart()
     source_x, source_y, source_z = gps.locate()
     destination_x, destination_y, destination_z = 0
-    --Calculations
+    --Calculations for travel values
     distance_x = destination_x - source_x
     distnace_y = destination_y - source_y
     distance_z = destination_z - source_z
     --PATH FINDING GLOBAL
     --Path Finding for Y Axis (Up or Down)
     if distnace_y > 0 then
-        turtle.up() --Add distance Variable
+        for i=1, distnace_y do
+            turtle.up()
+        end
     else
-        turtle.down() --Add distance Variable
+        for i=-1, distnace_y, -1 do
+            turtle.down()
+        end
     end
+    --THOUGHT: NEED TO FIND WHAT DIRECTION I AM FACING
     --Path Finding for Z Axis (Left or Right)
     if distance_z > 0 then
-        turtle.right() --Add distance Variable
+        turtle.right()
+        for i=1, distance_z do
+            turtle.forward()
+        end
     else
-        turtle.left() --Add distance Variable
+        turtle.left()
+        for i=-1, distance_z, -1 do
+            turtle.forward()
+        end
     end
     --Path Finding for X Axis Forward or Backward
     if distance_x > 0 then
-        turtle.forward() --Add distance Variable
+        for i=1, distance_x do
+            turtle.forward()
+        end
     else
-        turtle.back()   --Add distance Variable
+        for i=-1, distance_x, -1 do
+            turtle.back()
+        end
     end
 end
 
